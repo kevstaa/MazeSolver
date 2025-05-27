@@ -33,6 +33,3 @@ python3 window.py
 
 A window will appear showing the maze generation and solving process.
 
-## License
-
-This project is for educational purposes.

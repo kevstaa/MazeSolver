@@ -199,24 +199,20 @@ class Maze:
         cell = self.__cells[i][j]
         cell.visited = True
 
-        # ¿Estamos en la meta?
         if i == self.__num_cols - 1 and j == self.__num_rows - 1:
             return True
 
-        # Direcciones: (dx, dy, pared_actual, pared_vecino)
         directions = [
-            (-1, 0, "has_left_wall", "has_right_wall"),   # izquierda
-            (1, 0, "has_right_wall", "has_left_wall"),    # derecha
-            (0, -1, "has_top_wall", "has_bottom_wall"),   # arriba
-            (0, 1, "has_bottom_wall", "has_top_wall"),    # abajo
+            (-1, 0, "has_left_wall", "has_right_wall"),
+            (1, 0, "has_right_wall", "has_left_wall"),
+            (0, -1, "has_top_wall", "has_bottom_wall"),
+            (0, 1, "has_bottom_wall", "has_top_wall"),
         ]
 
         for dx, dy, wall, neighbor_wall in directions:
             ni, nj = i + dx, j + dy
-            # ¿Está dentro del rango?
             if 0 <= ni < self.__num_cols and 0 <= nj < self.__num_rows:
                 neighbor = self.__cells[ni][nj]
-                # ¿Hay paso y no visitado?
                 if not getattr(cell, wall) and not neighbor.visited:
                     cell.draw_move(neighbor)
                     if self._solve_r(ni, nj):
@@ -232,7 +228,7 @@ class Maze:
 
 def main():
     win = Window(800, 600)
-    # Small Maze
+    # Mid Maze
     maze = Maze(50, 50, 10, 12, 40, 40, win, seed=0)
     maze._Maze__break_walls_r(0, 0)
     maze._Maze__break_entrance_and_exit()
